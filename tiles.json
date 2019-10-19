@@ -1,0 +1,32 @@
+[
+    {
+        "Name":"floor 1",
+        "ID":"floor_1",
+        "Path":"images/tiles/floor_1.png"
+    },
+    {
+        "Name":"stairs 1 n",
+        "ID":"stairs1_n",
+        "Path":"images/tiles/stairs1_n.png"
+    },
+    {
+        "Name":"stairs 1 s",
+        "ID":"stairs1_s",
+        "Path":"images/tiles/stairs1_s.png"
+    },
+    {
+        "Name":"stairs 1 e",
+        "ID":"stairs1_e",
+        "Path":"images/tiles/stairs1_e.png"
+    },
+    {
+        "Name":"stairs 1 w",
+        "ID":"stairs1_w",
+        "Path":"images/tiles/stairs1_w.png"
+    },
+    {
+        "Name":"wall 1",
+        "ID":"wall_1",
+        "Path":"images/tiles/wall_1.png"
+    }
+]
