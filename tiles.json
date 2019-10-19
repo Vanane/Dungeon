@@ -1,9 +1,41 @@
 [
     {
+        "Name":"angle 1 ne",
+        "ID":"angle1_ne",
+        "Path":"images/tiles/angle1_ne.png"
+    },
+    {
+        "Name":"angle 1 se",
+        "ID":"angle1_se",
+        "Path":"images/tiles/angle1_se.png"
+    },
+    {
+        "Name":"angle 1 nw",
+        "ID":"angle1_nw",
+        "Path":"images/tiles/angle1_nw.png"
+    },
+    {
+        "Name":"angle 1 sw",
+        "ID":"angle1_sw",
+        "Path":"images/tiles/angle1_sw.png"
+    },
+
+    {
         "Name":"floor 1",
         "ID":"floor_1",
         "Path":"images/tiles/floor_1.png"
     },
+    {
+        "Name":"floor 2 ne",
+        "ID":"floor2_ne",
+        "Path":"images/tiles/floor2_ne.png"
+    },
+    {
+        "Name":"floor 2 se",
+        "ID":"floor2_se",
+        "Path":"images/tiles/floor2_se.png"
+    },
+
     {
         "Name":"stairs 1 n",
         "ID":"stairs1_n",
@@ -24,6 +56,7 @@
         "ID":"stairs1_w",
         "Path":"images/tiles/stairs1_w.png"
     },
+
     {
         "Name":"wall 1",
         "ID":"wall_1",
