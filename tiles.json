@@ -1,65 +1,28 @@
 [
-    {
-        "Name":"angle 1 ne",
-        "ID":"angle1_ne",
-        "Path":"images/tiles/angle1_ne.png"
-    },
-    {
-        "Name":"angle 1 se",
-        "ID":"angle1_se",
-        "Path":"images/tiles/angle1_se.png"
-    },
-    {
-        "Name":"angle 1 nw",
-        "ID":"angle1_nw",
-        "Path":"images/tiles/angle1_nw.png"
-    },
-    {
-        "Name":"angle 1 sw",
-        "ID":"angle1_sw",
-        "Path":"images/tiles/angle1_sw.png"
-    },
-
-    {
-        "Name":"floor 1",
-        "ID":"floor_1",
-        "Path":"images/tiles/floor_1.png"
-    },
-    {
-        "Name":"floor 2 ne",
-        "ID":"floor2_ne",
-        "Path":"images/tiles/floor2_ne.png"
-    },
-    {
-        "Name":"floor 2 se",
-        "ID":"floor2_se",
-        "Path":"images/tiles/floor2_se.png"
-    },
-
-    {
-        "Name":"stairs 1 n",
-        "ID":"stairs1_n",
-        "Path":"images/tiles/stairs1_n.png"
-    },
-    {
-        "Name":"stairs 1 s",
-        "ID":"stairs1_s",
-        "Path":"images/tiles/stairs1_s.png"
-    },
-    {
-        "Name":"stairs 1 e",
-        "ID":"stairs1_e",
-        "Path":"images/tiles/stairs1_e.png"
-    },
-    {
-        "Name":"stairs 1 w",
-        "ID":"stairs1_w",
-        "Path":"images/tiles/stairs1_w.png"
-    },
-
-    {
-        "Name":"wall 1",
-        "ID":"wall_1",
-        "Path":"images/tiles/wall_1.png"
-    }
+{"Name":"angle1ne","ID":"angle1ne","Path":"images/tiles/angle1ne.png","Type":"tile"},
+{"Name":"angle1nw","ID":"angle1nw","Path":"images/tiles/angle1nw.png","Type":"tile"},
+{"Name":"angle1se","ID":"angle1se","Path":"images/tiles/angle1se.png","Type":"tile"},
+{"Name":"angle1sw","ID":"angle1sw","Path":"images/tiles/angle1sw.png","Type":"tile"},
+{"Name":"angle2ne","ID":"angle2ne","Path":"images/tiles/angle2ne.png","Type":"tile"},
+{"Name":"angle2nw","ID":"angle2nw","Path":"images/tiles/angle2nw.png","Type":"tile"},
+{"Name":"angle2se","ID":"angle2se","Path":"images/tiles/angle2se.png","Type":"tile"},
+{"Name":"angle2sw","ID":"angle2sw","Path":"images/tiles/angle2sw.png","Type":"tile"},
+{"Name":"floor1","ID":"floor1","Path":"images/tiles/floor1.png","Type":"tile"},
+{"Name":"floor2e","ID":"floor2e","Path":"images/tiles/floor2e.png","Type":"tile"},
+{"Name":"floor2n","ID":"floor2n","Path":"images/tiles/floor2n.png","Type":"tile"},
+{"Name":"floor2ne","ID":"floor2ne","Path":"images/tiles/floor2ne.png","Type":"tile"},
+{"Name":"floor2se","ID":"floor2se","Path":"images/tiles/floor2se.png","Type":"tile"},
+{"Name":"floor3ne","ID":"floor3ne","Path":"images/tiles/floor3ne.png","Type":"tile"},
+{"Name":"floor3se","ID":"floor3se","Path":"images/tiles/floor3se.png","Type":"tile"},
+{"Name":"stairs1e","ID":"stairs1e","Path":"images/tiles/stairs1e.png","Type":"tile"},
+{"Name":"stairs1n","ID":"stairs1n","Path":"images/tiles/stairs1n.png","Type":"tile"},
+{"Name":"stairs1s","ID":"stairs1s","Path":"images/tiles/stairs1s.png","Type":"tile"},
+{"Name":"stairs1w","ID":"stairs1w","Path":"images/tiles/stairs1w.png","Type":"tile"},
+{"Name":"wall1","ID":"wall1","Path":"images/tiles/wall1.png","Type":"tile"},
+{"Name":"wall2e","ID":"wall2e","Path":"images/tiles/wall2e.png","Type":"tile"},
+{"Name":"wall2n","ID":"wall2n","Path":"images/tiles/wall2n.png","Type":"tile"},
+{"Name":"wall2s","ID":"wall2s","Path":"images/tiles/wall2s.png","Type":"tile"},
+{"Name":"wall2w","ID":"wall2w","Path":"images/tiles/wall2w.png","Type":"tile"},
+{"Name":"bench1n","ID":"bench1n","Path":"images/props/bench1n.png","Type":"prop"},
+{"Name":"door1","ID":"door1","Path":"images/props/door1.png","Type":"prop"}
 ]

@@ -2,7 +2,7 @@
 var TileModel = {
     Name: "",
     ID:"",
-    IconPath:""
+    Path:""
 }
 */
 
@@ -13,6 +13,7 @@ function NewTileModel()
     return r = {
         Name: "",
         ID:"",
-        Path:""
+        Path:"",
+        Type:""
     };
 }

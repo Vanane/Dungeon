@@ -6,7 +6,8 @@ var TileProperties =
 
 /*var Tile = {
     Pos : {x = 0, y = 0},
-    TileID: null
+    TileID: null,
+    PropID: null
 }*/
 
 
@@ -14,7 +15,8 @@ function NewTile()
 {
     let r = {
         Pos : {x: 0, y: 0},
-        TileID: null
+        TileID: null,
+        PropID: null
     };
     return r;
 }

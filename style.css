@@ -66,14 +66,38 @@ body
 {
     position:relative;
     background-color:lightgoldenrodyellow;
-    height: 60%;
+    height:60%;
     overflow-y:scroll;
 }
 
-.img-tile
+#col-right, #col-left
 {
-    width:auto;
-    margin:1em;
+    position:relative;
+    float:left;
+    width:100%;
+}
+
+#panel-tiles #but-switch-tile-prop
+{
+    position:relative;
+    float:right;
+}
+
+#panel-tiles .img-tile, #panel-tiles .img-prop
+{
+    box-sizing: border-box;
+    width:33.3%;
+    padding:1em;
+}
+
+#panel-tiles .img-tile
+{
+    display:initial;
+}
+
+#panel-tiles .img-prop
+{
+    display:none;
 }
 
 #panel-tools

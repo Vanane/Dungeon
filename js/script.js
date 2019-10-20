@@ -3,6 +3,7 @@ var canvas, ctx;
 var TilesWide;
 var TilesTall;
 var TileModelList;
+var PropList;
 
 //Variables d'états
 var PaintMode;
@@ -18,20 +19,18 @@ $(document).ready(function()
     //Instanciation des variables globales
     canvas = document.getElementById("dungeon-canvas");
     ctx = canvas.getContext("2d");
+
     
     UpdateSizeValues();    
         
     ResetDrawing();
-    
-    document.getElementById("butChangeSize").addEventListener("click", ResetDrawing);
-    
-    
-    LoadAllTileModels();   
+            
+    LoadAllTiles();   
 
     DefineEvents();
 });
 
-function LoadAllTileModels()
+function LoadAllTiles()
 {
     //GetJSON permet de récupérer un fichier JSON et de le lire.
     //Ici on récupère un fichier contenant les infos des tiles existantes.    
@@ -43,21 +42,31 @@ function LoadAllTileModels()
             //Pour chaque case du tableau récupéré, on crée un nouvel élément
             //<img> dont on va charger l'image de la tile actuellement étudiée, 
             //Puis on l'attache au panneau de droite.
-            let img = $("<img class=\"img-tile\" id="+ TileModelList[i].ID +" />").attr('src', TileModelList[i].Path)
+
+            let img = $("<img class=\"img-" + TileModelList[i].Type + "\" id="+ TileModelList[i].ID +" />").attr('src', TileModelList[i].Path)
             .on('load', function() {
                 if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                     alert('broken image!');
                 } else {
-                    $("#panel-tiles").append(img);
+                    switch(img[0].className)
+                    {
+                        case "img-tile":
+                                img[0].style.display = "initial";
+                            break;
+                        default:
+                            img[0].style.display = "none";
+                            break;
+                    }
+                    $("#col-left").append(img);
                 }
             });
             img.on("click", OnTileModelClick);
         }
-    }); 
+    });         
 }
 
 function SetSelectedModel(id)
-{
+{    
     //Affecte le modèle de tile actuellement sélectionné
     var found = false;
     var i = 0;
@@ -71,7 +80,7 @@ function SetSelectedModel(id)
     if(found)
     {
         SelectedTileModel = TileModelList[i];
-        PaintMode = "tile";
+        PaintMode = SelectedTileModel.Type;
     }    
 
 }
@@ -153,6 +162,13 @@ function FloodFill(tile, TargetId, NewId)
     return;
 }
 
+
+function ToggleVisibility(el){
+    if(el.style.display == "none")
+        el.style.display = "initial";
+    else el.style.display = "none";
+}
+
 /********************************/
 /************ EVENTS ************/
 /********************************/
@@ -162,12 +178,37 @@ function DefineEvents()
     canvas.addEventListener("mousedown", OnCanvasClick); 
     canvas.addEventListener("mouseup", OnCanvasUnclick); 
     canvas.addEventListener("mousemove", OnCanvasDraw); 
+    document.getElementById("butChangeSize").addEventListener("click", ResetDrawing);
 
     $("#but-erase").on("click", OnButtonEraseClick);
     $("#but-fill").on("click", OnButtonFillClick);
+    $("#but-switch-tile-prop").on("click", OnButtonSwitchClick);
     $("#but-export").on("click", OnButtonExportClick);
     $("#range-zoom").on("mousemove", OnRangeZoomChange);
     $("#range-zoom").on("change", OnRangeZoomChange);
+}
+
+
+function OnButtonSwitchClick(e){
+    var elements = document.getElementById("col-left").children;
+    $(elements).each(i => {
+        ToggleVisibility(elements[i]);
+    });
+}
+
+function OnButtonEraseClick(e)
+{
+    PaintMode = "erase";
+}
+
+function OnButtonExportClick(e)
+{
+    window.open(canvas.toDataURL());
+}
+
+function OnButtonFillClick(e)
+{
+    PaintMode = "fill";
 }
 
 function OnCanvasClick(e)
@@ -197,6 +238,13 @@ function OnCanvasDraw(t)
                     UpdateTile(ctx, tile);
                 }
                 break;
+            case "prop":
+                if(SelectedTileModel.ID != "")
+                {
+                    tile.PropID = SelectedTileModel.ID;
+                    UpdateTile(ctx, tile);
+                }
+                break;
             case "erase":
                 EraseTile(ctx, tile);
                 break;
@@ -212,25 +260,9 @@ function OnRangeZoomChange(e)
     canvas.style.transformOrigin = "top left";
     canvas.style.transform = "scale("+ e.target.value +")";
     e.target.parentElement.getElementsByTagName("span")[0].innerHTML = e.target.value;   
-    console.log(e.target.parentElement.getElementsByTagName);
 }
 
-function OnTileModelClick(t)
+function OnTileModelClick(el)
 {
-    SetSelectedModel(t.target.id);
-}
-
-function OnButtonEraseClick(e)
-{
-    PaintMode = "erase";
-}
-
-function OnButtonFillClick(e)
-{
-    PaintMode = "fill";
-}
-
-function OnButtonExportClick(e)
-{
-    window.open(canvas.toDataURL());
+    SetSelectedModel(el.target.id);
 }

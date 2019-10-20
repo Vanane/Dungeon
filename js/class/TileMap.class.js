@@ -66,9 +66,15 @@ function UpdateTile(canvas, tile)
     //Taille de l'image - GridProperties.LineWidth car on redimensionne pour aller avec
     //la taille des traits de la grille.
 
+    //Drawing the sprite of the tile itself
+    if(tile.TileID != null)
         canvas.drawImage(document.getElementById(tile.TileID),
-        GetPositionFromTile(tile).x, GetPositionFromTile(tile).y,
-        TileProperties.TileSize, TileProperties.TileSize);        
+            GetPositionFromTile(tile).x, GetPositionFromTile(tile).y,
+            TileProperties.TileSize, TileProperties.TileSize);    
+    if(tile.PropID != null)
+        canvas.drawImage(document.getElementById(tile.PropID),
+            GetPositionFromTile(tile).x, GetPositionFromTile(tile).y,
+            TileProperties.TileSize, TileProperties.TileSize);    
 }
 
 function EraseTile(canvas, tile)
@@ -77,4 +83,5 @@ function EraseTile(canvas, tile)
     canvas.clearRect(GetPositionFromTile(tile).x, GetPositionFromTile(tile).y,
         TileProperties.TileSize, TileProperties.TileSize);
         tile.TileID = null;
+        tile.PropID = null;
 }
