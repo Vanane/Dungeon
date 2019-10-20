@@ -34,7 +34,8 @@ function LoadAllTiles()
 {
     //GetJSON permet de récupérer un fichier JSON et de le lire.
     //Ici on récupère un fichier contenant les infos des tiles existantes.    
-    var json = $.getJSON("tiles.json", function(){   
+
+    var json = $.getJSON("tiles.json", function(){ 
         //La fonction anonyme est lancée lorsque getJSON a terminé.  
         TileModelList = json.responseJSON;
         for(var i = 0; i < TileModelList.length; i++)
@@ -42,7 +43,6 @@ function LoadAllTiles()
             //Pour chaque case du tableau récupéré, on crée un nouvel élément
             //<img> dont on va charger l'image de la tile actuellement étudiée, 
             //Puis on l'attache au panneau de droite.
-
             let img = $("<img class=\"img-" + TileModelList[i].Type + "\" id="+ TileModelList[i].ID +" />").attr('src', TileModelList[i].Path)
             .on('load', function() {
                 if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
@@ -62,7 +62,7 @@ function LoadAllTiles()
             });
             img.on("click", OnTileModelClick);
         }
-    });         
+    });
 }
 
 function SetSelectedModel(id)
@@ -184,6 +184,7 @@ function DefineEvents()
     $("#but-fill").on("click", OnButtonFillClick);
     $("#but-switch-tile-prop").on("click", OnButtonSwitchClick);
     $("#but-export").on("click", OnButtonExportClick);
+    $("#but-manage-filters").on("click", OnButtonManageFiltersClick);
     $("#range-zoom").on("mousemove", OnRangeZoomChange);
     $("#range-zoom").on("change", OnRangeZoomChange);
 }
@@ -209,6 +210,10 @@ function OnButtonExportClick(e)
 function OnButtonFillClick(e)
 {
     PaintMode = "fill";
+}
+
+function OnButtonManageFiltersClick(e){
+    window.open("php/manage-filters.php");
 }
 
 function OnCanvasClick(e)

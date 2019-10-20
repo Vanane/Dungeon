@@ -4,6 +4,13 @@ body
     margin:0;
 }
 
+
+
+.float-right
+{
+    float:right !important;
+}
+
 #left-panel
 {
     float:left;
@@ -117,12 +124,18 @@ body
 .button
 {
     display:block;
-    box-sizing:border-box;    
-    width:200px;
-    padding:1em 0 1em 0;
+    box-sizing:border-box;        
+    width:auto;
+    padding:0.5em 0 0.5em 0;
     margin:auto;
     text-align:center;
     border:solid 1px black;
+}
+
+.button.inline
+{
+    display:inline-block;
+
 }
 
 .button:hover, .tool-button:hover
