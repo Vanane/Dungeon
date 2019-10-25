@@ -36,5 +36,6 @@
 {"Name":"wall2sw","ID":"wall2sw","Path":"images/tiles/wall2sw.png","Type":"tile"},
 {"Name":"wall2w","ID":"wall2w","Path":"images/tiles/wall2w.png","Type":"tile"},
 {"Name":"bench1n","ID":"bench1n","Path":"images/props/bench1n.png","Type":"prop"},
-{"Name":"door1","ID":"door1","Path":"images/props/door1.png","Type":"prop"}
+{"Name":"door1","ID":"door1","Path":"images/props/door1.png","Type":"prop"},
+{"Name":"woodenchest1","ID":"woodenchest1","Path":"images/props/woodenchest1.png","Type":"prop"}
 ]

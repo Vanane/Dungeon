@@ -5,13 +5,19 @@
     <body>
         <p>/!\ Only use white space to separate filter words ! Every symbol accepted.</p>
         <?php
+        $jsonFile = fopen("../filters.json", "r");
+        $jsonFilters = json_decode(stream_get_contents($jsonFile));
+
 
         $files = array_merge(glob("../images/tiles/*.png"), glob("../images/props/*.png"));
 
         for($i = 0; $i < count($files); $i++){
+            $TileName = basename($files[$i], ".png");
             echo("
             <p>
-                Filters of : ".basename($files[$i])." : <textarea id=\"".basename($files[$i])."\"></textarea>
+                Filters of : ".$TileName." :
+                <img src=\"".dirname($files[$i])."/".basename($files[$i])."\"></img>
+                <textarea id=\"".$TileName."\" value=\"".$jsonFilters->$TileName."\"></textarea>
             </p>
             ");
         }
@@ -26,7 +32,7 @@
                 $("textarea").each(function(i, e){
                     datas[e.id] = e.value;
                 });
-                console.log(JSON.stringify(datas));
+                alert("Saved !");
                 $.ajax({
                     method: "POST",
                     url: "ajax/ajaxFilters.php",

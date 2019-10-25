@@ -3,7 +3,6 @@ var canvas, ctx;
 var TilesWide;
 var TilesTall;
 var TileModelList;
-var PropList;
 
 //Variables d'états
 var PaintMode;
@@ -26,15 +25,14 @@ $(document).ready(function()
     ResetDrawing();
             
     LoadAllTiles();   
-
+    
     DefineEvents();
 });
 
 function LoadAllTiles()
 {
     //GetJSON permet de récupérer un fichier JSON et de le lire.
-    //Ici on récupère un fichier contenant les infos des tiles existantes.    
-
+    //Ici on récupère un fichier contenant les infos des tiles existantes.        
     var json = $.getJSON("tiles.json", function(){ 
         //La fonction anonyme est lancée lorsque getJSON a terminé.  
         TileModelList = json.responseJSON;
@@ -47,20 +45,23 @@ function LoadAllTiles()
             .on('load', function() {
                 if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                     alert('broken image!');
-                } else {
-                    switch(img[0].className)
-                    {
-                        case "img-tile":
-                                img[0].style.display = "initial";
-                            break;
-                        default:
-                            img[0].style.display = "none";
-                            break;
-                    }
+                } else {                    
                     $("#col-left").append(img);
                 }
             });
             img.on("click", OnTileModelClick);
+        }
+        LoadFilters();            
+    });
+}
+
+function LoadFilters(){
+
+    var json = $.getJSON("filters.json", function(){ 
+        //La fonction anonyme est lancée lorsque getJSON a terminé.  
+        var FiltersList = json.responseJSON;
+        for(i = 0; i < TileModelList.length; i++){
+            $("#" + TileModelList[i].ID).attr("data-filters", FiltersList[TileModelList[i].ID]);
         }
     });
 }
@@ -169,6 +170,13 @@ function ToggleVisibility(el){
     else el.style.display = "none";
 }
 
+function ToggleVisibility(el, visible){
+    if(visible)
+        el.style.display = "initial";
+    else el.style.display = "none";
+}
+
+
 /********************************/
 /************ EVENTS ************/
 /********************************/
@@ -182,19 +190,11 @@ function DefineEvents()
 
     $("#but-erase").on("click", OnButtonEraseClick);
     $("#but-fill").on("click", OnButtonFillClick);
-    $("#but-switch-tile-prop").on("click", OnButtonSwitchClick);
     $("#but-export").on("click", OnButtonExportClick);
+    $("#but-filter").on("click", OnButtonFilterClick);
     $("#but-manage-filters").on("click", OnButtonManageFiltersClick);
     $("#range-zoom").on("mousemove", OnRangeZoomChange);
     $("#range-zoom").on("change", OnRangeZoomChange);
-}
-
-
-function OnButtonSwitchClick(e){
-    var elements = document.getElementById("col-left").children;
-    $(elements).each(i => {
-        ToggleVisibility(elements[i]);
-    });
 }
 
 function OnButtonEraseClick(e)
@@ -210,6 +210,40 @@ function OnButtonExportClick(e)
 function OnButtonFillClick(e)
 {
     PaintMode = "fill";
+}
+
+function OnButtonFilterClick(e)
+{
+    var imgs = $("#col-left");
+    var FilterText = $("#filter-bar")[0].value;
+    Filters = FilterText.split(' ');
+
+    for(i = 0; i < TileModelList.length; i++) //Pour chaque tile de la liste, on compare les filtres et les mots
+    {
+        if(FilterText == "")
+            ToggleVisibility(imgs[0].children[i], true);
+        else
+        {
+            var ImgFilters = imgs[0].children[i].getAttribute("data-filters");
+            
+            var Valid = true;
+            var j = 0;
+            
+            if(ImgFilters != null)
+            {
+                while(Valid && j < Filters.length) //Pour chaque mot de filtrage, on parcourt le tableau de filtres de l'élément
+                {                    
+                    reg = new RegExp(Filters[j]);
+                    Valid = ImgFilters.match(reg);
+                    j++;                                
+                }
+            }
+            else Valid = false;
+            
+            ToggleVisibility(imgs[0].children[i], Valid);
+        }
+    }
+
 }
 
 function OnButtonManageFiltersClick(e){
